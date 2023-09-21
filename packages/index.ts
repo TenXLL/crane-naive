@@ -1,4 +1,5 @@
 import { App } from 'vue';
+
 import components from './components/components';
 
 import * as CraneFormTypes from './components/CraneForm/types/crane-form.types';

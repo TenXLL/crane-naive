@@ -1,4 +1,9 @@
-import { SwitchProps, SelectProps } from 'naive-ui';
+import {
+  SwitchProps,
+  SelectProps,
+  DatePickerProps,
+  InputNumberProps
+} from 'naive-ui';
 
 export declare type CraneBuiltInWidgets =
   | 'text'
@@ -110,5 +115,14 @@ export interface CraneUISchemaItem {
    */
   switchProp?: SwitchProps;
 
+  /**
+   * 下拉传参
+   */
   selectProps?: SelectProps;
+  /**
+   * 时间日期传参
+   */
+  dateProps?: DatePickerProps;
+
+  numberProps?: InputNumberProps;
 }

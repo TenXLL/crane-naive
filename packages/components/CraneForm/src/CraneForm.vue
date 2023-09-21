@@ -1,5 +1,5 @@
 <template>
-  <n-form :inline="mode === 'inline'">
+  <n-form :inline="mode === 'inline'" label-placement="left">
     <template v-for="(property, key) in schema!.properties" :key="key">
       <n-form-item :label="property.title" :path="key.toString()">
         <template v-if="property.ui?.widget === 'radio'">
@@ -14,6 +14,24 @@
             v-model:value="data.formData[key]"
             v-bind="property.ui?.selectProps"
             :options="property.enum"
+          />
+        </template>
+        <template v-if="property.ui?.widget === 'date'">
+          <n-date-picker
+            v-model:formatted-value="data.formData[key]"
+            :value-format="
+              property?.valueFormat
+                ? property.valueFormat
+                : 'yyyy-MM-dd HH:mm:ss'
+            "
+            :type="property?.format ? property?.format : 'datetime'"
+            v-bind="property.ui?.dateProps"
+          />
+        </template>
+        <template v-if="property.ui?.widget === 'number'">
+          <n-input-number
+            v-model:value="data.formData[key]"
+            v-bind="property.ui?.numberProps"
           />
         </template>
       </n-form-item>

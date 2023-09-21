@@ -2,6 +2,7 @@ import { CraneUISchemaItem } from './crane-ui.types';
 
 export interface CraneSchemaEnum {
   [key: string]: any;
+
   /** 是否禁用状态 */
   disabled?: boolean;
   /** 文本 */
@@ -42,6 +43,7 @@ export declare type CraneSchemaEnumType =
 
 export interface CraneSchema {
   [key: string]: any;
+
   /**
    * 数据类型，支持 JavaScript 基础类型；注意项：
    *
@@ -139,7 +141,22 @@ export interface CraneSchema {
    * - `if`和`then` 是必须同时出现，`else` 可选项
    */
   if?: CraneSchema;
-  format?: string;
+  /**
+   * 日期/时间格式化
+   */
+  format?:
+    | 'date'
+    | 'datetime'
+    | 'daterange'
+    | 'datetimerange'
+    | 'month'
+    | 'monthrange'
+    | 'year'
+    | 'quarter';
+  /**
+   * 值格式化
+   */
+  valueFormat?: string;
   /**
    * 属性描述，相当于 `label` 值，按以下规则展示：
    * - 当值为 `null`、`undefined` 时使用 `key` 替代

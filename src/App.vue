@@ -1,5 +1,5 @@
 <template>
-  <n-card style="width: 400px">
+  <n-card style="width: 600px">
     <CraneForm :schema="schema" mode="inline" />
   </n-card>
 </template>
@@ -41,22 +41,16 @@ const schema = ref<CraneSchema>({
           clearable: true
         }
       }
+    },
+    number: {
+      type: 'number',
+      title: '数字',
+      ui: {
+        widget: 'number'
+      }
     }
   }
 });
 </script>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>
+<style scoped></style>

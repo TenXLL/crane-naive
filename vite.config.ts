@@ -34,5 +34,14 @@ export default defineConfig({
         }
       }
     }
+  },
+  css: {
+    preprocessorOptions: {
+      less: {
+        javascriptEnabled: true,
+        charset: false,
+        additionalData: '@import "./packages/common.less";'
+      }
+    }
   }
 });
