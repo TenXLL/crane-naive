@@ -158,10 +158,6 @@ export interface CraneSchema {
    * 是否只读状态
    */
   readOnly?: boolean;
-  /**
-   * 是否加载中...
-   */
-  isLoading?: boolean;
   /** **唯一非标准：** 指定UI配置信息，优先级高于 `sf` 组件 `ui` 属性值 */
   ui?: CraneUISchemaItem;
 }

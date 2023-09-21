@@ -1,5 +1,7 @@
 <template>
-  <CraneForm :schema="schema" />
+  <n-card style="width: 400px">
+    <CraneForm :schema="schema" mode="inline" />
+  </n-card>
 </template>
 
 <script setup lang="ts">
@@ -15,7 +17,28 @@ const schema = ref<CraneSchema>({
       ui: {
         widget: 'radio',
         switchProp: {
-          round: true
+          round: false
+        }
+      }
+    },
+    select: {
+      type: 'string',
+      title: '选择',
+      enum: [
+        {
+          label: "Everybody's Got Something to Hide Except Me and My Monkey",
+          value: 'song0',
+          disabled: true
+        },
+        {
+          label: 'Drive My Car',
+          value: 'song1'
+        }
+      ],
+      ui: {
+        widget: 'select',
+        selectProps: {
+          clearable: true
         }
       }
     }

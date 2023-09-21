@@ -1,4 +1,4 @@
-import { SwitchProps } from 'naive-ui';
+import { SwitchProps, SelectProps } from 'naive-ui';
 
 export declare type CraneBuiltInWidgets =
   | 'text'
@@ -109,4 +109,6 @@ export interface CraneUISchemaItem {
    * switch的传参
    */
   switchProp?: SwitchProps;
+
+  selectProps?: SelectProps;
 }
