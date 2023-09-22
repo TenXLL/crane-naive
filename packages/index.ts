@@ -1,4 +1,5 @@
 import { App } from 'vue';
+import 'default-passive-events';
 
 import components from './components/components';
 

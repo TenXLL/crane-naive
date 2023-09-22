@@ -142,17 +142,9 @@ export interface CraneSchema {
    */
   if?: CraneSchema;
   /**
-   * 日期/时间格式化
+   * 选择特定类型
    */
-  format?:
-    | 'date'
-    | 'datetime'
-    | 'daterange'
-    | 'datetimerange'
-    | 'month'
-    | 'monthrange'
-    | 'year'
-    | 'quarter';
+  format?: 'email' | 'ip' | 'uri' | 'mobile' | 'id-card' | 'color';
   /**
    * 值格式化
    */

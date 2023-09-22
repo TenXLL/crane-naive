@@ -1,6 +1,6 @@
 <template>
   <n-card style="width: 600px">
-    <CraneForm :schema="schema" mode="inline" />
+    <CraneForm :schema="schema" mode="inline" :form-props="formProps" />
   </n-card>
 </template>
 
@@ -8,6 +8,11 @@
 import CraneForm from '~/components/CraneForm/src/CraneForm.vue';
 import { ref } from 'vue';
 import { CraneSchema } from '~/components/CraneForm/types/crane-form.types.ts';
+import { FormProps } from 'naive-ui';
+
+const formProps = ref<FormProps>({
+  labelPlacement: 'left'
+});
 
 const schema = ref<CraneSchema>({
   properties: {
@@ -48,8 +53,20 @@ const schema = ref<CraneSchema>({
       ui: {
         widget: 'number'
       }
+    },
+    date: {
+      type: 'string',
+      title: '日期',
+      ui: {
+        widget: 'date',
+        dateProps: {
+          clearable: true,
+          type: 'datetime'
+        }
+      }
     }
-  }
+  },
+  required: ['radio']
 });
 </script>
 
