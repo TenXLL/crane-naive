@@ -14,6 +14,7 @@
             v-model:value="data.formData[key]"
             v-bind="property.ui?.selectProps"
             :options="property.enum"
+            :placeholder="property.ui?.placeholder"
           />
         </template>
         <template v-if="property.ui?.widget === 'date'">
@@ -26,12 +27,14 @@
             "
             :type="property?.format ? property?.format : 'datetime'"
             v-bind="property.ui?.dateProps"
+            :placeholder="property.ui?.placeholder"
           />
         </template>
         <template v-if="property.ui?.widget === 'number'">
           <n-input-number
             v-model:value="data.formData[key]"
             v-bind="property.ui?.numberProps"
+            :placeholder="property.ui?.placeholder"
           />
         </template>
       </n-form-item>
@@ -46,8 +49,7 @@ import { CraneSchema } from '../types/crane-form.types';
 const data = reactive({
   formData: {} as any,
   options: {} as Record<string, any>,
-  rules: {} as { [key: string]: any },
-  file: []
+  rules: {} as { [key: string]: any }
 });
 
 defineProps({

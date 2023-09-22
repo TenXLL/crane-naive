@@ -21,14 +21,16 @@ export default defineConfig({
   },
   build: {
     outDir: 'lib',
+    cssTarget: 'chrome67',
     lib: {
       entry: resolve(__dirname, 'packages/index.ts'),
-      name: 'CraneElement',
-      fileName: (format) => `crane-element.${format}.js`
+      name: 'CraneNaive',
+      fileName: (format) => `crane-naive.${format}.js`
     },
     rollupOptions: {
       external: ['vue'],
       output: {
+        exports: 'named',
         globals: {
           vue: 'Vue'
         }

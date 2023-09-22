@@ -111,6 +111,10 @@ export interface CraneUISchemaItem {
    */
   spanLabelFixed?: number | null;
   /**
+   * placeholder
+   */
+  placeholder?: string;
+  /**
    * switch的传参
    */
   switchProp?: SwitchProps;
@@ -123,6 +127,8 @@ export interface CraneUISchemaItem {
    * 时间日期传参
    */
   dateProps?: DatePickerProps;
-
+  /**
+   * 数字输入框传参
+   */
   numberProps?: InputNumberProps;
 }

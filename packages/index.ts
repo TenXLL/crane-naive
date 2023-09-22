@@ -4,6 +4,7 @@ import components from './components/components';
 
 import * as CraneFormTypes from './components/CraneForm/types/crane-form.types';
 import * as CraneUITypes from './components/CraneForm/types/crane-ui.types';
+import './common.less';
 
 // 所有组件
 export * from './components/components';
