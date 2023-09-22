@@ -1,5 +1,5 @@
 <template>
-  <n-form :inline="mode === 'inline'" label-placement="left">
+  <n-form :inline="mode === 'inline'" :label-placement="labelPlacement">
     <template v-for="(property, key) in schema!.properties" :key="key">
       <n-form-item :label="property.title" :path="key.toString()">
         <template v-if="property.ui?.widget === 'radio'">
@@ -56,6 +56,10 @@ defineProps({
   mode: {
     type: String as PropType<'default' | 'inline'>,
     default: 'default'
+  },
+  labelPlacement: {
+    type: String as PropType<'left' | 'right' | 'top' | 'bottom'>,
+    default: 'left'
   },
   schema: {
     type: Object as PropType<CraneSchema>,
