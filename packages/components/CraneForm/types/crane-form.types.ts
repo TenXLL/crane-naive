@@ -170,3 +170,14 @@ export interface CraneSchema {
   /** **唯一非标准：** 指定UI配置信息，优先级高于 `sf` 组件 `ui` 属性值 */
   ui?: CraneUISchemaItem;
 }
+
+/**
+ * 表单数据回填
+ */
+export interface FormData {
+  [key: string]: any;
+}
+
+export interface FormConfig {
+  [key: string]: any;
+}

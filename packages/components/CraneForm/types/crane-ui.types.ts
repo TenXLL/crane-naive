@@ -3,7 +3,8 @@ import {
   SelectProps,
   DatePickerProps,
   InputNumberProps,
-  InputProps
+  InputProps,
+  TreeSelectProps
 } from 'naive-ui';
 
 export declare type CraneBuiltInWidgets =
@@ -116,6 +117,10 @@ export interface CraneUISchemaItem {
    */
   placeholder?: string;
   /**
+   * 异步数据
+   */
+  asyncData?: Promise<any>;
+  /**
    * switch的传参
    */
   switchProp?: SwitchProps;
@@ -137,4 +142,9 @@ export interface CraneUISchemaItem {
    * 输入框传参
    */
   inputProps?: InputProps;
+
+  /**
+   * 树形下拉传参
+   */
+  treeSelectProps?: TreeSelectProps;
 }
