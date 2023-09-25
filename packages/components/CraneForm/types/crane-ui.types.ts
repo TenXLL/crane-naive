@@ -4,7 +4,8 @@ import {
   DatePickerProps,
   InputNumberProps,
   InputProps,
-  TreeSelectProps
+  TreeSelectProps,
+  UploadProps
 } from 'naive-ui';
 
 export declare type CraneBuiltInWidgets =
@@ -147,4 +148,9 @@ export interface CraneUISchemaItem {
    * 树形下拉传参
    */
   treeSelectProps?: TreeSelectProps;
+
+  /**
+   * 上传传参
+   */
+  uploadProps?: UploadProps;
 }

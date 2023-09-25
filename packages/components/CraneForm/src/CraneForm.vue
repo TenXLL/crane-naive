@@ -88,14 +88,13 @@
         </template>
         <template v-else-if="property.ui?.widget === 'upload'">
           <n-upload
-            v-model:file-list="data.fileList"
-            :action="injectConfig?.action"
+            :default-file-list="data.formData[key]"
+            :action="injectConfig ? injectConfig?.action : '#'"
             show-preview-button
+            v-bind="property.ui?.uploadProps"
             list-type="image-card"
-            @finish="handleFinish"
-            @preview="() => {}"
-            @remove="() => {}"
-            @update:file-list="() => {}"
+            @finish="handleFinish($event, key as string)"
+            @preview="handlePreview"
           >
             <n-icon size="30">
               <Add />
@@ -124,6 +123,19 @@
       </n-button>
     </n-form-item>
   </n-form>
+
+  <n-modal v-model:show="showModal">
+    <n-card
+      style="width: 600px"
+      title="预览"
+      :bordered="false"
+      size="huge"
+      role="dialog"
+      aria-modal="true"
+    >
+      <img :src="previewUrl" alt="" style="width: 100%; height: 100%" />
+    </n-card>
+  </n-modal>
 </template>
 
 <script setup lang="ts">
@@ -140,17 +152,35 @@ import {
   replaceEmptyValuesWithNull
 } from '~/utils/formatValue.ts';
 import { Add } from '@vicons/ionicons5';
+import { fileToBase64 } from '~/utils/file.ts';
+
+const previewUrl = ref('');
+const showModal = ref(false);
 
 const formRef = ref(NForm);
 const emits = defineEmits(['formSubmit']);
 
 const injectConfig = inject<FormConfig>('configForm');
 
+const previewFileList = ref<UploadFileInfo[]>([
+  {
+    id: 'react',
+    name: '我是react.png',
+    status: 'finished',
+    url: 'https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg'
+  },
+  {
+    id: 'vue',
+    name: '我是vue.png',
+    status: 'finished',
+    url: 'https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg'
+  }
+]);
+
 const data = reactive({
   formData: {} as any,
   options: {} as Record<string, any[]>,
-  rules: {} as { [key: string]: any },
-  fileList: []
+  rules: {} as { [key: string]: any }
 });
 
 const props = defineProps({
@@ -184,6 +214,7 @@ function setFormData() {
   if (!props.formData) {
     return;
   }
+  console.log(props.formData);
   data.formData = convertProxyToNormal(props.formData);
 }
 
@@ -329,16 +360,32 @@ const reset = () => {
   }
 };
 
-const handleFinish = ({
-  file,
-  event
-}: {
-  file: UploadFileInfo;
-  event?: ProgressEvent;
-}) => {
-  console.log(event?.target);
+const handleFinish = (
+  {
+    file,
+    event
+  }: {
+    file: UploadFileInfo;
+    event?: ProgressEvent;
+  },
+  key: string
+) => {
+  if (!data.formData[key]) {
+    data.formData[key] = [];
+  }
+  data.formData[key].push(
+    JSON.parse((event?.target as XMLHttpRequest).response).data.id
+  );
   return file;
 };
+
+function handlePreview(uploadFileInfo: UploadFileInfo) {
+  const { file } = uploadFileInfo;
+  fileToBase64(file as File).then((res) => {
+    previewUrl.value = res;
+    showModal.value = true;
+  });
+}
 </script>
 
 <style scoped lang="less"></style>

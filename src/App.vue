@@ -19,12 +19,19 @@ const formProps = ref<FormProps>({
   labelPlacement: 'left'
 });
 
-const formData = ref({
-  radio: true
-});
-
 provide('configForm', {
   action: 'https://server.caijiwang.cc/api/v1.0/file/upload'
+});
+
+const formData = ref({
+  upload: [
+    {
+      id: '9178e3be6f5eb403066c01c174018e8b',
+      name: '我是自带url的图片.png',
+      status: 'finished',
+      url: 'https://server.caijiwang.cc/api/v1.0/file/preview/9178e3be6f5eb403066c01c174018e8b'
+    }
+  ]
 });
 
 const schema = ref<CraneSchema>({
@@ -43,7 +50,10 @@ const schema = ref<CraneSchema>({
       type: 'array',
       title: '上传',
       ui: {
-        widget: 'upload'
+        widget: 'upload',
+        uploadProps: {
+          multiple: true
+        }
       }
     }
   },
